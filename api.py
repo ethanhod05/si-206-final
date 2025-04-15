@@ -5,15 +5,15 @@ import urllib.parse
 
 app = Flask(__name__)
 
-# Replace with your Spotify app credentials
+# Spotify app credentials
 CLIENT_ID = 'f598073d91714cc3bfe9df621a92279f'
 CLIENT_SECRET = 'f8c23888e3314856ac6c2af59b8537e9'
-REDIRECT_URI = 'https://si206final.org'
+REDIRECT_URI = 'https://si206final.com/udlerhod'
 
-# Step 1: Authorization Request (User logs in)
+# Step 1: Redirect user to Spotify login
 @app.route('/login')
 def login():
-    scope = 'user-read-private user-read-email'  # Scopes you're requesting
+    scope = 'user-read-private user-read-email'
     auth_url = 'https://accounts.spotify.com/authorize'
 
     params = {
@@ -23,18 +23,14 @@ def login():
         'scope': scope
     }
 
-    # Redirect to Spotify's authorization page
     return redirect(f"{auth_url}?{urllib.parse.urlencode(params)}")
 
-# Step 2: Handle the Redirect (Exchange authorization code for an access token)
+# Step 2: Handle redirect from Spotify (exchange code for access token)
 @app.route('/udlerhod')
 def callback():
-    # Get the code from the callback URL
     code = request.args.get('code')
 
-    # Basic Authorization header for client authentication
     auth_header = base64.b64encode(f"{CLIENT_ID}:{CLIENT_SECRET}".encode()).decode()
-
     headers = {
         'Authorization': f'Basic {auth_header}',
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -46,28 +42,28 @@ def callback():
         'redirect_uri': REDIRECT_URI
     }
 
-    # Step 3: Request the access token
     response = requests.post('https://accounts.spotify.com/api/token', headers=headers, data=data)
-    token_data = response.json()
 
-    # Show the access token, refresh token, and other info
-    return token_data  # For debugging, you can log or use the token for further requests
+    if response.status_code == 200:
+        token_data = response.json()
+        access_token = token_data.get('access_token')
 
-# Step 4: Use the access token to make a request to the Spotify API (example: get user info)
+        # You can store this token in a session or variable to use later
+        return f"Access token received! <br>Access Token: {access_token}"
+    else:
+        return f"Failed to get token. {response.status_code}: {response.text}"
+
+# OPTIONAL: Use access token to get user info (you'd normally pass the token here)
 @app.route('/user')
 def user_info():
-    # Replace with the actual access token from the response
-    access_token = 'your-access-token-here'
+    access_token = 'your-access-token-here'  # Replace manually for now
 
     headers = {
         'Authorization': f"Bearer {access_token}"
     }
 
-    # Example: Get the current user's profile
     response = requests.get('https://api.spotify.com/v1/me', headers=headers)
-    user_info = response.json()
-
-    return user_info  # Shows user information like name, email, etc.
+    return response.json()
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
