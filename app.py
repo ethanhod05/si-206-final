@@ -9,7 +9,8 @@ app = Flask(__name__)
 # Replace these with your Spotify app credentials
 CLIENT_ID = 'YOUR_CLIENT_ID'
 CLIENT_SECRET = 'YOUR_CLIENT_SECRET'
-REDIRECT_URI = 'http://localhost:5000/callback'
+REDIRECT_URI = 'https://si206final.com/udlerhod'
+
 
 # Authorization URL and Token URL
 AUTH_URL = 'https://accounts.spotify.com/authorize'
