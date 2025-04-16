@@ -1,14 +1,14 @@
 import requests
 import base64
 import json
-from artists_in_the_world import get_top_100
 import sqlite3
+from artists_in_the_world import get_top_100
 
-# Replace with your actual Spotify credentials
+# === Spotify Credentials ===
 CLIENT_ID = "62df1bd7a8b641d899cf46a72d9e8195"
 CLIENT_SECRET = "98254d2479944fed9ac4c4d2281e8de7"
 
-# Step 1: Get access token
+# === Step 1: Get access token ===
 auth_str = f"{CLIENT_ID}:{CLIENT_SECRET}"
 b64_auth = base64.b64encode(auth_str.encode()).decode()
 
@@ -20,14 +20,13 @@ token_response = requests.post(
 access_token = token_response.json().get("access_token")
 headers = {"Authorization": f"Bearer {access_token}"}
 
-# List of artists to search
+# === Step 2: Fetch top artists data ===
 artist_names = get_top_100()
 data_list = []
 
 for artist_name in artist_names:
     print(f"\n=== {artist_name.upper()} ===")
 
-    # Step 2: Search for artist
     search_url = "https://api.spotify.com/v1/search"
     search_params = {"q": artist_name, "type": "artist", "limit": 1}
     search_response = requests.get(search_url, headers=headers, params=search_params)
@@ -40,9 +39,9 @@ for artist_name in artist_names:
         followers = artist["followers"]["total"]
         artist_id = artist["id"]
 
-        print(name)
-        print(popularity)
-        print(f"{name} has {followers:,} followers on Spotify.")
+        print(f"Name: {name}")
+        print(f"Popularity: {popularity}")
+        print(f"Followers: {followers:,}")
 
         data_list.append({
             "name": name,
@@ -53,11 +52,35 @@ for artist_name in artist_names:
     else:
         print(f"No results found for {artist_name}.")
 
-# Save data to JSON
+# === Step 3: Save to JSON file ===
 with open('data.json', 'w') as file:
     json.dump(data_list, file, indent=4)
 
-# Optional: get artist names from a playlist
+# === Step 4: Save to SQLite database ===
+conn = sqlite3.connect("Spotify_names.db")
+c = conn.cursor()
+
+# Create table
+c.execute('''
+CREATE TABLE IF NOT EXISTS SpotifyArtists (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    followers INTEGER,
+    popularity INTEGER
+)
+''')
+
+# Insert data into table
+for artist in data_list:
+    c.execute('''
+        INSERT INTO SpotifyArtists (name, followers, popularity)
+        VALUES (?, ?, ?)
+    ''', (artist['name'], artist['followers'], artist['popularity']))
+
+conn.commit()
+conn.close()
+
+# === (Optional) Playlist Artist Utility ===
 def get_artists_from_playlist(access_token, playlist_id):
     headers = {"Authorization": f"Bearer {access_token}"}
     url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
@@ -81,18 +104,3 @@ def get_artists_from_playlist(access_token, playlist_id):
     seen = set()
     unique_artists = [name for name in artist_names if not (name in seen or seen.add(name))]
     return unique_artists
-
-conn = sqlite3.connect("Spotify_names.db")
-c = conn.cursor()
-
-# Create the table
-c.execute('''
-CREATE TABLE IF NOT EXISTS SpotifyArtists (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    followers INTEGER,
-    popularity INTEGER
-)
-''')
-
-conn.commit()
