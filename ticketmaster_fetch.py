@@ -15,6 +15,7 @@ response = requests.get("https://app.ticketmaster.com/discovery/v2/events.json",
 data = response.json()
 
 if "_embedded" in data and "events" in data["_embedded"]:
+    print("printing out all of the data",data)
     for event in data["_embedded"]["events"]:
         name = event["name"]
         date = event["dates"]["start"].get("localDate", "TBD")
