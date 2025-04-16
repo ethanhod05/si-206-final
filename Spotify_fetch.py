@@ -17,7 +17,7 @@ token_response = requests.post(
 access_token = token_response.json().get("access_token")
 
 # Step 2: Search for artist
-artist_name = "Taylor Swift"
+artist_name = "Drake"
 search_url = "https://api.spotify.com/v1/search"
 search_params = {"q": artist_name, "type": "artist", "limit": 1}
 headers = {"Authorization": f"Bearer {access_token}"}
