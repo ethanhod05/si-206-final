@@ -5,7 +5,7 @@ import sqlite3
 # SPOTIFY & TICKETMASTER API credentials (you must replace these)
 SPOTIFY_CLIENT_ID = "62df1bd7a8b641d899cf46a72d9e8195"
 SPOTIFY_CLIENT_SECRET = "98254d2479944fed9ac4c4d2281e8de7"
-TICKETMASTER_API_KEY = " kIOXUHI092ZzeLFH0KGeph5wzKHFd0CV"
+TICKETMASTER_API_KEY = "kIOXUHI092ZzeLFH0KGeph5wzKHFd0CV"
 
 ARTIST_NAME = "Taylor Swift"
 DB_NAME = "music_data.db"
@@ -63,8 +63,10 @@ def fetch_spotify_data(token, artist_name):
     # Search for artist by name
     search = requests.get("https://api.spotify.com/v1/search", headers=headers,
                           params={"q": artist_name, "type": "artist", "limit": 1})
-    artist = search.json()["artists"]["items"][0]
-    artist_id = artist["id"]
+    # artist = search.json()["artists"]["items"][0]
+    artist = search.json()
+    print("here", artist["artists"])
+    # artist_id = artist["id"]
 
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
