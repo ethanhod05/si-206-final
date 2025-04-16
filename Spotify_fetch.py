@@ -1,7 +1,7 @@
 import requests
 import base64
 
-# Replace these with your actual Spotify credentials
+# Replace with your actual Spotify credentials
 CLIENT_ID = "62df1bd7a8b641d899cf46a72d9e8195"
 CLIENT_SECRET = "98254d2479944fed9ac4c4d2281e8de7"
 
@@ -15,26 +15,33 @@ token_response = requests.post(
     data={"grant_type": "client_credentials"}
 )
 access_token = token_response.json().get("access_token")
-
-# Step 2: Search for artist
-artist_name = "John Summit"
-search_url = "https://api.spotify.com/v1/search"
-search_params = {"q": artist_name, "type": "artist", "limit": 1}
 headers = {"Authorization": f"Bearer {access_token}"}
-search_response = requests.get(search_url, headers=headers, params=search_params)
-artist = search_response.json()["artists"]["items"][0]
-artist_id = artist["id"]
 
-# Print follower count
-followers = artist["followers"]["total"]
-print(f"{artist_name} has {followers:,} followers on Spotify.\n")
+# List of artists to search
+artist_names = ["Drake", "Taylor Swift"]
 
-# Step 3: Get top tracks
-top_tracks_url = f"https://api.spotify.com/v1/artists/{artist_id}/top-tracks"
-tracks_response = requests.get(top_tracks_url, headers=headers, params={"market": "US"})
-tracks = tracks_response.json()["tracks"]
+for artist_name in artist_names:
+    print(f"\n=== {artist_name.upper()} ===")
 
-# Print top tracks
-print("Top Tracks:")
-for track in tracks:
-    print(f"{track['name']} - {track['external_urls']['spotify']}")
+    # Step 2: Search for artist
+    search_url = "https://api.spotify.com/v1/search"
+    search_params = {"q": artist_name, "type": "artist", "limit": 1}
+    search_response = requests.get(search_url, headers=headers, params=search_params)
+    results = search_response.json()
+
+    if results["artists"]["items"]:
+        artist = results["artists"]["items"][0]
+        artist_id = artist["id"]
+        followers = artist["followers"]["total"]
+        print(f"{artist_name} has {followers:,} followers on Spotify.")
+
+        # Step 3: Get top tracks
+        top_tracks_url = f"https://api.spotify.com/v1/artists/{artist_id}/top-tracks"
+        tracks_response = requests.get(top_tracks_url, headers=headers, params={"market": "US"})
+        tracks = tracks_response.json()["tracks"]
+
+        print("Top Tracks:")
+        for track in tracks:
+            print(f"{track['name']} - {track['external_urls']['spotify']}")
+    else:
+        print(f"No results found for {artist_name}.")

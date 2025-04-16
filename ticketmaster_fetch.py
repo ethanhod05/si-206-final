@@ -7,7 +7,7 @@ params = {
     "apikey": TICKETMASTER_API_KEY,
     "keyword": artist_name,
     "classificationName": "music",
-    "size": 10,
+    "size": 25,
     "countryCode": "US"
 }
 
