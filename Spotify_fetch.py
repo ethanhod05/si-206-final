@@ -20,7 +20,7 @@ token_response = requests.post(
 access_token = token_response.json().get("access_token")
 headers = {"Authorization": f"Bearer {access_token}"}
 
-#  Step 2: Fetch top artists data 
+# Fetch top artists data 
 artist_names = get_top_100()
 data_list = []
 
@@ -52,7 +52,7 @@ for artist_name in artist_names:
     else:
         print(f"No results found for {artist_name}.")
 
-# Step 3: Save to JSON file
+# Save to JSON file
 with open('data.json', 'w') as file:
     json.dump(data_list, file, indent=4)
 
@@ -60,7 +60,22 @@ with open('data.json', 'w') as file:
 conn = sqlite3.connect("this_one_works.db")
 c = conn.cursor()
 
-# Create table
+# Create PopularityLevel table
+c.execute('''
+CREATE TABLE IF NOT EXISTS PopularityLevel (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    level TEXT
+)
+''')
+
+# Insert levels if not already present
+c.execute("SELECT COUNT(*) FROM PopularityLevel")
+if c.fetchone()[0] == 0:
+    c.executemany("INSERT INTO PopularityLevel (level) VALUES (?)", [
+        ('Low',), ('Mid',), ('High',)
+    ])
+
+# Create SpotifyArtists table (with popularity_level_id FK)
 c.execute('''
 CREATE TABLE IF NOT EXISTS SpotifyArtists (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -69,27 +84,38 @@ CREATE TABLE IF NOT EXISTS SpotifyArtists (
     popularity INTEGER
 )
 ''')
-#print("here\n")
-#print(data_list)
+
+# Add popularity_level_id column if not already present
 try:
-    c.execute('''
-              SELECT COUNT (id) FROM SpotifyArtists''')
-    
-    name = c.fetchone()[0]
+    c.execute("ALTER TABLE SpotifyArtists ADD COLUMN popularity_level_id INTEGER REFERENCES PopularityLevel(id)")
+except sqlite3.OperationalError:
+    pass  # Column already exists
 
+# Check how many entries already exist
+try:
+    c.execute("SELECT COUNT(id) FROM SpotifyArtists")
+    existing_count = c.fetchone()[0]
 except:
-    name = 0
-    print("name doesnt exist")
-# Insert data into table
-i = 0
+    existing_count = 0
 
+# Classify popularity level
+def get_popularity_level_id(score):
+    if score < 85:
+        return 1  # Low
+    elif score < 93:
+        return 2  # Mid
+    else:
+        return 3  # High
+
+# Insert next 25 artists
 for i in range(25):
-    index = name + i
+    index = existing_count + i
     artist = data_list[index]
+    popularity_level_id = get_popularity_level_id(artist["popularity"])
     c.execute('''
-        INSERT INTO SpotifyArtists (name, followers, popularity)
-        VALUES (?, ?, ?)
-    ''', (artist['name'], artist['followers'], artist['popularity']))
+        INSERT INTO SpotifyArtists (name, followers, popularity, popularity_level_id)
+        VALUES (?, ?, ?, ?)
+    ''', (artist['name'], artist['followers'], artist['popularity'], popularity_level_id))
 
 conn.commit()
 conn.close()
@@ -98,7 +124,7 @@ conn.close()
 def get_artists_from_playlist(access_token, playlist_id):
     headers = {"Authorization": f"Bearer {access_token}"}
     url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
-    params = {"limit": 100} #i can change this to 25 to fit our goal
+    params = {"limit": 100}
     response = requests.get(url, headers=headers, params=params)
 
     if response.status_code != 200:
@@ -117,5 +143,4 @@ def get_artists_from_playlist(access_token, playlist_id):
     # Remove duplicates while preserving order
     seen = set()
     unique_artists = [name for name in artist_names if not (name in seen or seen.add(name))]
-    print(type(unique_artists))
     return unique_artists

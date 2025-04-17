@@ -1,626 +1,92 @@
 [
     {
-        "name": "Weekly Lab",
-        "popularity": 17,
-        "followers": 5,
-        "id": "5FN53pZs037rEdXr9sIvE9"
-    },
-    {
-        "name": "Adding Additives",
-        "popularity": 36,
-        "followers": 6,
-        "id": "5Tdx5tOHNK3cBJUKi9owpg"
-    },
-    {
-        "name": "Morgan Wallen",
-        "popularity": 91,
-        "followers": 12356900,
-        "id": "4oUHIQIBe0LHzYfvXNW4QM"
-    },
-    {
-        "name": "Kendrick Lamar",
-        "popularity": 97,
-        "followers": 40330475,
-        "id": "2YZyLoL8N0Wb9xBt1NhZWg"
-    },
-    {
-        "name": "Sabrina Carpenter",
-        "popularity": 92,
-        "followers": 21461316,
-        "id": "74KM79TiuVKeVCqs8QtB0B"
-    },
-    {
-        "name": "Ethel Cain",
-        "popularity": 70,
-        "followers": 927876,
-        "id": "0avMDS4HyoCEP6RqZJWpY2"
-    },
-    {
-        "name": "SZA",
-        "popularity": 94,
-        "followers": 29035108,
-        "id": "7tYKF4w9nC0nq9CsPZTHyP"
-    },
-    {
-        "name": "Chappell Roan",
-        "popularity": 88,
-        "followers": 5927062,
-        "id": "7GlBOeep6PqTfFi59PTUUN"
-    },
-    {
-        "name": "Drake",
-        "popularity": 98,
-        "followers": 97840405,
-        "id": "3TVXtAsR1Inumwj472S9r4"
-    },
-    {
-        "name": "Ariana Grande",
-        "popularity": 95,
-        "followers": 104881984,
-        "id": "66CXWjxzNUsdJxJ2JdwvnR"
-    },
-    {
-        "name": "Billie Eilish",
-        "popularity": 95,
-        "followers": 110445062,
-        "id": "6qqNVTkY8uBg9cP3Jd7DAH"
-    },
-    {
-        "name": "Teddy Swims",
-        "popularity": 88,
-        "followers": 4544881,
-        "id": "33qOK5uJ8AR2xuQQAhHump"
-    },
-    {
-        "name": "Lady Gaga",
-        "popularity": 94,
-        "followers": 36813161,
-        "id": "1HY2Jd0NmPuamShAr6KMms"
-    },
-    {
-        "name": "The Weeknd",
-        "popularity": 97,
-        "followers": 103404038,
-        "id": "1Xyo4u8uXC1ZmMpatF05PJ"
-    },
-    {
-        "name": "Taylor Swift",
-        "popularity": 98,
-        "followers": 135877956,
-        "id": "06HL4z0CvFAxyc27GXpf02"
-    },
-    {
-        "name": "Bruno Mars",
-        "popularity": 95,
-        "followers": 70653071,
-        "id": "0du5cEVh5yTK9QJze8zA0C"
-    },
-    {
-        "name": "Doechii",
-        "popularity": 88,
-        "followers": 2740853,
-        "id": "4E2rKHVDssGJm2SCDOMMJB"
-    },
-    {
-        "name": "ZEROBASEONE",
-        "popularity": 67,
-        "followers": 991477,
-        "id": "7cjg7EkeZy3OI5o9Qthc6n"
-    },
-    {
-        "name": "Elton John",
-        "popularity": 84,
-        "followers": 14729369,
-        "id": "3PhoLpVuITZKcymswpck5b"
-    },
-    {
-        "name": "BigXthaPlug",
-        "popularity": 83,
-        "followers": 1506301,
-        "id": "6qxpnaukVayrQn6ViNvu9I"
-    },
-    {
-        "name": "Brandi Carlile",
-        "popularity": 67,
-        "followers": 885549,
-        "id": "2sG4zTOLvjKG1PSoOyf5Ej"
-    },
-    {
-        "name": "Jelly Roll",
-        "popularity": 81,
-        "followers": 5311283,
-        "id": "19k8AgwwTSxeaxkOuCQEJs"
-    },
-    {
-        "name": "Luke Combs",
-        "popularity": 86,
-        "followers": 12563897,
-        "id": "718COspgdWOnwOFpJHRZHS"
-    },
-    {
-        "name": "Tyler, The Creator",
-        "popularity": 91,
-        "followers": 21426249,
-        "id": "4V8LLVI7PbaPR0K2TGSxFF"
-    },
-    {
-        "name": "Benson Boone",
-        "popularity": 87,
-        "followers": 5338420,
-        "id": "22wbnEMDvgVIAGdFeek6ET"
-    },
-    {
-        "name": "Shaboozey",
-        "popularity": 79,
-        "followers": 1115035,
-        "id": "3y2cIKLjiOlp1Np37WiUdH"
-    },
-    {
-        "name": "Bad Bunny",
-        "popularity": 100,
-        "followers": 94077253,
-        "id": "4q3ewBCX7sLwd24euuV69X"
-    },
-    {
-        "name": "Gracie Abrams",
-        "popularity": 89,
-        "followers": 5335784,
-        "id": "4tuJ0bMpJh08umKkEXKUI5"
-    },
-    {
-        "name": "Tate McRae",
-        "popularity": 91,
-        "followers": 7464464,
-        "id": "45dkTj5sMRSjrmBSBeiHym"
-    },
-    {
-        "name": "Post Malone",
-        "popularity": 89,
-        "followers": 46854351,
-        "id": "246dkjvS1zLTtiykXe5h60"
-    },
-    {
-        "name": "Alex Warren",
-        "popularity": 86,
-        "followers": 1177127,
-        "id": "0fTSzq9jAh4c36UVb4V7CB"
-    },
-    {
-        "name": "Zach Bryan",
-        "popularity": 88,
-        "followers": 6450215,
-        "id": "40ZNYROS4zLfyyBSs2PGe2"
-    },
-    {
-        "name": "Ed Sheeran",
-        "popularity": 90,
-        "followers": 120052045,
-        "id": "6eUKZXaKkcviH0Ku9w2n3V"
-    },
-    {
-        "name": "Tracy Chapman",
-        "popularity": 73,
-        "followers": 1951881,
-        "id": "7oPgCQqMMXEXrNau5vxYZP"
-    },
-    {
-        "name": "Bailey Zimmerman",
-        "popularity": 78,
-        "followers": 1681662,
-        "id": "3win9vGIxFfBRag9S63wwf"
-    },
-    {
-        "name": "Playboi Carti",
-        "popularity": 95,
-        "followers": 14039507,
-        "id": "699OTQXzgjhIYAHMy9RyPD"
-    },
-    {
-        "name": "Hozier",
-        "popularity": 86,
-        "followers": 8685997,
-        "id": "2FXC3k01G6Gw61bmprjgqS"
-    },
-    {
-        "name": "Chris Stapleton",
-        "popularity": 84,
-        "followers": 8324082,
-        "id": "4YLtscXsxbVgi031ovDDdh"
-    },
-    {
-        "name": "Fleetwood Mac",
-        "popularity": 84,
-        "followers": 12990514,
-        "id": "08GQAI4eElDnROBrJRGE0X"
-    },
-    {
-        "name": "Sleep Token",
-        "popularity": 82,
-        "followers": 2170542,
-        "id": "2n2RSaZqBuUUukhbLlpnE6"
-    },
-    {
-        "name": "Miley Cyrus",
-        "popularity": 85,
-        "followers": 25844482,
-        "id": "5YGY8feqx7naU7z4HrwZM6"
-    },
-    {
-        "name": "Djo",
-        "popularity": 78,
-        "followers": 1953951,
-        "id": "5p9HO3XC5P3BLxJs5Mtrhm"
-    },
-    {
-        "name": "Lola Young",
-        "popularity": 82,
-        "followers": 993668,
-        "id": "67FB4n52MgexGQIG8s0yUH"
-    },
-    {
-        "name": "Metallica",
-        "popularity": 84,
-        "followers": 30452130,
-        "id": "2ye2Wgw4gimLv2eAKyk1NB"
-    },
-    {
-        "name": "The Mar\u00edas",
-        "popularity": 86,
-        "followers": 2553755,
-        "id": "2sSGPbdZJkaSE2AbcGOACx"
-    },
-    {
-        "name": "Linkin Park",
-        "popularity": 90,
-        "followers": 29616414,
-        "id": "6XyY86QOPPrYVGvF9ch6wz"
-    },
-    {
-        "name": "Nirvana",
-        "popularity": 84,
-        "followers": 21943399,
-        "id": "6olE6TJLqED3rqDCT0FyPh"
-    },
-    {
-        "name": "Myles Smith",
-        "popularity": 78,
-        "followers": 1026202,
-        "id": "3bO19AOone0ubCsfDXDtYt"
-    },
-    {
-        "name": "Black Country, New Road",
-        "popularity": 65,
-        "followers": 380951,
-        "id": "3PP6ghmOlDl2jaKaH0avUN"
-    },
-    {
-        "name": "Neton Vega",
-        "popularity": 91,
-        "followers": 1954438,
-        "id": "6pV5zH2LzjOUHaAvENdMMa"
-    },
-    {
-        "name": "Zach Top",
-        "popularity": 76,
-        "followers": 522004,
-        "id": "4FGPzWzgjURDNT7JQ8pYgH"
-    },
-    {
-        "name": "xikers",
-        "popularity": 56,
-        "followers": 442001,
-        "id": "6QHP8St0MzfNDqjKpwtMht"
-    },
-    {
-        "name": "Noah Kahan",
-        "popularity": 85,
-        "followers": 4030026,
-        "id": "2RQXRUsr4IW1f3mKyKsy4B"
-    },
-    {
-        "name": "Radiohead",
-        "popularity": 86,
-        "followers": 11916724,
-        "id": "4Z8W4fKeB5YxbusRsdQVPb"
-    },
-    {
-        "name": "Tito Double P",
-        "popularity": 91,
-        "followers": 6478497,
-        "id": "5eumcnUkdmGvkvcsx1WFNG"
-    },
-    {
-        "name": "Chris Brown",
-        "popularity": 89,
-        "followers": 26083501,
-        "id": "7bXgB6jMjp9ATFy66eO08Z"
-    },
-    {
-        "name": "Michael Jackson",
-        "popularity": 85,
-        "followers": 35406844,
-        "id": "3fMbdgg4jU18AjLCKBhRSm"
-    },
-    {
-        "name": "Deftones",
-        "popularity": 82,
-        "followers": 6795637,
-        "id": "6Ghvu1VvMGScGpOUJBAHNH"
-    },
-    {
-        "name": "Leon Thomas",
-        "popularity": 76,
-        "followers": 468192,
-        "id": "0nnBZ8FXWjG9wZgM2cpfeb"
-    },
-    {
-        "name": "Brandon Lake",
-        "popularity": 76,
-        "followers": 1102905,
-        "id": "1bdnGJxkbIIys5Jhk1T74v"
-    },
-    {
-        "name": "GloRilla",
-        "popularity": 81,
-        "followers": 2066766,
-        "id": "2qoQgPAilErOKCwE2Y8wOG"
-    },
-    {
-        "name": "Frank Ocean",
-        "popularity": 88,
-        "followers": 18494729,
-        "id": "2h93pZq0e7k5yf4dywlkpM"
-    },
-    {
-        "name": "Riley Green",
-        "popularity": 78,
-        "followers": 1075160,
-        "id": "2QMsj4XJ7ne2hojxt6v5eb"
-    },
-    {
-        "name": "Travis Scott",
-        "popularity": 94,
-        "followers": 38155897,
-        "id": "0Y5tJX1MQlPlqiwlOH1tJY"
-    },
-    {
-        "name": "Coldplay",
-        "popularity": 91,
-        "followers": 57856121,
-        "id": "4gzpq5DPGxSnKTe4SA8HAU"
-    },
-    {
-        "name": "Selena Gomez",
-        "popularity": 88,
-        "followers": 52361851,
-        "id": "0C8ZW7ezQVs4URX5aX7Kqx"
-    },
-    {
-        "name": "Rihanna",
-        "popularity": 92,
-        "followers": 66572747,
-        "id": "5pKCCKE2ajJHZ9KAiaK11H"
-    },
-    {
-        "name": "Ella Langley",
-        "popularity": 75,
-        "followers": 381502,
-        "id": "6BRxQ8cD3eqnrVj6WKDok8"
-    },
-    {
-        "name": "AC/DC",
-        "popularity": 83,
-        "followers": 30990586,
-        "id": "711MCceyCBcFnzjGY4Q7Un"
-    },
-    {
-        "name": "ROS\u00c9",
-        "popularity": 85,
-        "followers": 11029438,
-        "id": "3eVa5w3URK5duf6eyVDbu9"
-    },
-    {
-        "name": "benny blanco",
-        "popularity": 85,
-        "followers": 1421792,
-        "id": "5CiGnKThu5ctn9pBxv7DGa"
-    },
-    {
-        "name": "Kane Brown",
-        "popularity": 76,
-        "followers": 5663068,
-        "id": "3oSJ7TBVCWMDMiYjXNiCKE"
-    },
-    {
-        "name": "Future",
-        "popularity": 93,
-        "followers": 21132835,
-        "id": "1RyvyyTE3xzB2ZywiAwp0i"
-    },
-    {
-        "name": "Arctic Monkeys",
-        "popularity": 88,
-        "followers": 29812417,
-        "id": "7Ln80lUS6He07XvHI8qqHH"
-    },
-    {
-        "name": "Eagles",
-        "popularity": 77,
-        "followers": 11615882,
-        "id": "0ECwFtbIWEVNwjlrfc6xoL"
-    },
-    {
-        "name": "Pink Floyd",
-        "popularity": 82,
-        "followers": 21870344,
-        "id": "0k17h0D3J5VfsdmQ1iZtE9"
-    },
-    {
-        "name": "Eminem",
-        "popularity": 92,
-        "followers": 99687497,
-        "id": "7dGJo4pcD2V6oG8kP0tJRR"
-    },
-    {
-        "name": "Lil Tecca",
-        "popularity": 85,
-        "followers": 9189211,
-        "id": "4Ga1P7PMIsmqEZqhYZQgDo"
-    },
-    {
-        "name": "Creedence Clearwater Revival",
-        "popularity": 80,
-        "followers": 7518274,
-        "id": "3IYUhFvPQItj6xySrBmZkd"
-    },
-    {
-        "name": "Mac Miller",
-        "popularity": 85,
-        "followers": 11698765,
-        "id": "4LLpKhyESsyAXpc4laK94U"
-    },
-    {
-        "name": "Jessie Murph",
-        "popularity": 76,
-        "followers": 1235453,
-        "id": "2yLzlEFtIS0Q9UkyBZdQA7"
-    },
-    {
-        "name": "Queen",
-        "popularity": 85,
-        "followers": 53609568,
-        "id": "1dfeR4HaWDbWqFHLkxsg1d"
-    },
-    {
-        "name": "Fuerza Regida",
-        "popularity": 91,
-        "followers": 15145129,
-        "id": "0ys2OFYzWYB5hRDLCsBqxt"
-    },
-    {
-        "name": "Nate Smith",
-        "popularity": 72,
-        "followers": 492090,
-        "id": "4NYMUsIcUUsBHbV9DICa5x"
-    },
-    {
-        "name": "Gigi Perez",
-        "popularity": 80,
-        "followers": 1097132,
-        "id": "1iCnM8foFssWlPRLfAbIwo"
-    },
-    {
-        "name": "Alice In Chains",
-        "popularity": 77,
-        "followers": 5754571,
-        "id": "64tNsm6TnZe2zpcMVMOoHL"
-    },
-    {
-        "name": "Megan Moroney",
-        "popularity": 77,
-        "followers": 798893,
-        "id": "5Ppie0uPnbnvGBYRwYmlt0"
-    },
-    {
-        "name": "Red Hot Chili Peppers",
-        "popularity": 85,
-        "followers": 22370144,
-        "id": "0L8ExT028jH3ddEcZwqJJ5"
-    },
-    {
-        "name": "Tommy Richman",
-        "popularity": 75,
-        "followers": 877106,
-        "id": "1WaFQSHVGZQJTbf0BdxdNo"
-    },
-    {
-        "name": "Jason Aldean",
-        "popularity": 77,
-        "followers": 6835306,
-        "id": "3FfvYsEGaIb52QPXhg4DcH"
-    },
-    {
-        "name": "Stray Kids",
-        "popularity": 86,
-        "followers": 18788312,
-        "id": "2dIgFjalVxs4ThymZ67YCE"
-    },
-    {
         "name": "Dua Lipa",
-        "popularity": 89,
         "followers": 45852231,
-        "id": "6M2wZ9GZgrQXHCFfjv46we"
-    },
-    {
-        "name": "Blake Shelton",
-        "popularity": 74,
-        "followers": 7422528,
-        "id": "1UTPBmNbXNTittyMJrNkvw"
-    },
-    {
-        "name": "Creed",
-        "popularity": 77,
-        "followers": 3911330,
-        "id": "43sZBwHjahUvgbx1WNIkIz"
-    },
-    {
-        "name": "PARTYNEXTDOOR",
-        "popularity": 88,
-        "followers": 8846124,
-        "id": "2HPaUgqeutzr3jx5a9WyDV"
-    },
-    {
-        "name": "Led Zeppelin",
-        "popularity": 79,
-        "followers": 15395200,
-        "id": "36QJpDe2go2KgaRleHCDTp"
+        "popularity": 89
     },
     {
         "name": "J. Cole",
-        "popularity": 86,
         "followers": 26119806,
-        "id": "6l3HvQ5sa6mXTsMTB19rO5"
-    },
-    {
-        "name": "JENNIE",
-        "popularity": 89,
-        "followers": 9851618,
-        "id": "250b0Wlc5Vk0CoUsaCY84M"
-    },
-    {
-        "name": "Dasha",
-        "popularity": 72,
-        "followers": 331251,
-        "id": "7Ez6lTtSMjMf2YSYpukP1I"
+        "popularity": 86
     },
     {
         "name": "Lana Del Rey",
-        "popularity": 92,
         "followers": 46609823,
-        "id": "00FQb4jTyendYWaN8pK0wa"
+        "popularity": 92
     },
     {
-        "name": "Journey",
-        "popularity": 77,
-        "followers": 6132942,
-        "id": "0rvjqX7ttXeg3mTy8Xscbt"
+        "name": "Stray Kids",
+        "followers": 18788312,
+        "popularity": 86
+    },
+    {
+        "name": "Gigi Perez",
+        "followers": 1097132,
+        "popularity": 80
+    },
+    {
+        "name": "Nate Smith",
+        "followers": 492090,
+        "popularity": 72
+    },
+    {
+        "name": "Alice In Chains",
+        "followers": 5754571,
+        "popularity": 77
+    },
+    {
+        "name": "Tommy Richman",
+        "followers": 877106,
+        "popularity": 75
+    },
+    {
+        "name": "PARTYNEXTDOOR",
+        "followers": 8846124,
+        "popularity": 88
+    },
+    {
+        "name": "Red Hot Chili Peppers",
+        "followers": 22370144,
+        "popularity": 85
+    },
+    {
+        "name": "Megan Moroney",
+        "followers": 798893,
+        "popularity": 77
+    },
+    {
+        "name": "Jason Aldean",
+        "followers": 6835306,
+        "popularity": 77
+    },
+    {
+        "name": "Creed",
+        "followers": 3911330,
+        "popularity": 77
+    },
+    {
+        "name": "JENNIE",
+        "followers": 9851618,
+        "popularity": 89
+    },
+    {
+        "name": "Dasha",
+        "followers": 331251,
+        "popularity": 72
     },
     {
         "name": "Lainey Wilson",
-        "popularity": 77,
         "followers": 1223075,
-        "id": "6tPHARSq45lQ8BSALCfkFC"
+        "popularity": 77
     },
     {
-        "name": "Follow Us",
-        "popularity": 0,
-        "followers": 24,
-        "id": "6AskxJal6VB1ZehO0W6kUo"
+        "name": "Journey",
+        "followers": 6132942,
+        "popularity": 77
     },
     {
-        "name": "The Dailys",
-        "popularity": 29,
-        "followers": 3013,
-        "id": "31GxwBlhcV94DmaCv0XSTZ"
+        "name": "Led Zeppelin",
+        "followers": 15395200,
+        "popularity": 79
     }
 ]
