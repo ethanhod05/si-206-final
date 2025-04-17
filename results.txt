@@ -1,0 +1,7 @@
+🎵 Average Number of Upcoming Concerts by Popularity Level:
+High: 45.89 concerts
+Low: 24.50 concerts
+Mid: 31.86 concerts
+
+📊 Average Log10 Followers Across All Spotify Artists:
+6.56

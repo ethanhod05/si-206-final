@@ -2,10 +2,8 @@ import requests
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# === STEP 1: Add your Ticketmaster API Key ===
 API_KEY = 'kIOXUHI092ZzeLFH0KGeph5wzKHFd0CV'
 
-# === STEP 2: Function to fetch events and locations ===
 def get_event_locations(artist_name, country_code="US", size=100):
     url = "https://app.ticketmaster.com/discovery/v2/events.json"
     params = {
@@ -37,29 +35,27 @@ def get_event_locations(artist_name, country_code="US", size=100):
                     continue
     return locations
 
-# === STEP 3: Gather locations for multiple artists ===
-artist_names = ["Dua Lipa", "J. Cole", "Morgan Wallen", "Red Hot Chili Peppers"]
-all_locations = []
+def generate_heatmap():
+    artist_names = ["Dua Lipa", "J. Cole", "Morgan Wallen", "Red Hot Chili Peppers"]
+    all_locations = []
 
-for artist in artist_names:
-    print(f"🎤 Fetching events for {artist}...")
-    artist_locations = get_event_locations(artist)
-    all_locations.extend(artist_locations)
+    for artist in artist_names:
+        print(f"🎤 Fetching events for {artist}...")
+        artist_locations = get_event_locations(artist)
+        all_locations.extend(artist_locations)
 
-# === STEP 4: Plot static heatmap ===
-if all_locations:
-    df = pd.DataFrame(all_locations, columns=["lat", "lon"])
-    plt.figure(figsize=(10, 6))
-    hb = plt.hexbin(df['lon'], df['lat'], gridsize=30, cmap='plasma', mincnt=1)
-    plt.colorbar(hb, label='Event Density')
-    plt.title("Ticketmaster Artist Events Heatmap (Static)")
-    plt.xlabel("Longitude")
-    plt.ylabel("Latitude")
-    plt.grid(True)
-    plt.tight_layout()
-    plt.savefig("ticketmaster_event_heatmap.png", dpi=300)
-    plt.show()
-    print("✅ Map saved as ticketmaster_event_heatmap.png")
-else:
-    print("⚠️ No event locations found.")
-
+    if all_locations:
+        df = pd.DataFrame(all_locations, columns=["lat", "lon"])
+        plt.figure(figsize=(10, 6))
+        hb = plt.hexbin(df['lon'], df['lat'], gridsize=30, cmap='plasma', mincnt=1)
+        plt.colorbar(hb, label='Event Density')
+        plt.title("Ticketmaster Artist Events Heatmap (Static)")
+        plt.xlabel("Longitude")
+        plt.ylabel("Latitude")
+        plt.grid(True)
+        plt.tight_layout()
+        plt.savefig("Visualizations/ticketmaster_event_heatmap.png", dpi=300)
+        plt.close()
+        print("✅ Map saved as Visualizations/ticketmaster_event_heatmap.png")
+    else:
+        print("⚠️ No event locations found.")
