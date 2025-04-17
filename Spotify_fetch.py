@@ -4,11 +4,11 @@ import json
 import sqlite3
 from artists_in_the_world import get_top_100
 
-# === Spotify Credentials ===
+# Spotify Credentials 
 CLIENT_ID = "62df1bd7a8b641d899cf46a72d9e8195"
 CLIENT_SECRET = "98254d2479944fed9ac4c4d2281e8de7"
 
-# === Step 1: Get access token ===
+# Get access token
 auth_str = f"{CLIENT_ID}:{CLIENT_SECRET}"
 b64_auth = base64.b64encode(auth_str.encode()).decode()
 
@@ -20,7 +20,7 @@ token_response = requests.post(
 access_token = token_response.json().get("access_token")
 headers = {"Authorization": f"Bearer {access_token}"}
 
-# === Step 2: Fetch top artists data ===
+#  Step 2: Fetch top artists data 
 artist_names = get_top_100()
 data_list = []
 
@@ -52,12 +52,12 @@ for artist_name in artist_names:
     else:
         print(f"No results found for {artist_name}.")
 
-# === Step 3: Save to JSON file ===
+# Step 3: Save to JSON file
 with open('data.json', 'w') as file:
     json.dump(data_list, file, indent=4)
 
-# === Step 4: Save to SQLite database ===
-conn = sqlite3.connect("Spotify_names.db")
+# Save to SQLite database 
+conn = sqlite3.connect("this_one_works.db")
 c = conn.cursor()
 
 # Create table
@@ -69,9 +69,23 @@ CREATE TABLE IF NOT EXISTS SpotifyArtists (
     popularity INTEGER
 )
 ''')
+#print("here\n")
+#print(data_list)
+try:
+    c.execute('''
+              SELECT COUNT (id) FROM SpotifyArtists''')
+    
+    name = c.fetchone()[0]
 
+except:
+    name = 0
+    print("name doesnt exist")
 # Insert data into table
-for artist in data_list:
+i = 0
+
+for i in range(25):
+    index = name + i
+    artist = data_list[index]
     c.execute('''
         INSERT INTO SpotifyArtists (name, followers, popularity)
         VALUES (?, ?, ?)
@@ -80,15 +94,15 @@ for artist in data_list:
 conn.commit()
 conn.close()
 
-# === (Optional) Playlist Artist Utility ===
+# Playlist Artist Utility 
 def get_artists_from_playlist(access_token, playlist_id):
     headers = {"Authorization": f"Bearer {access_token}"}
     url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
-    params = {"limit": 100}
+    params = {"limit": 100} #i can change this to 25 to fit our goal
     response = requests.get(url, headers=headers, params=params)
 
     if response.status_code != 200:
-        print("❌ Error fetching playlist:", response.status_code, response.text)
+        print("Error fetching playlist:", response.status_code, response.text)
         return []
 
     data = response.json()
@@ -103,4 +117,5 @@ def get_artists_from_playlist(access_token, playlist_id):
     # Remove duplicates while preserving order
     seen = set()
     unique_artists = [name for name in artist_names if not (name in seen or seen.add(name))]
+    print(type(unique_artists))
     return unique_artists

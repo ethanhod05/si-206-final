@@ -8,11 +8,11 @@ import numpy as np
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
 
-# === Spotify API Credentials ===
+#API info
 CLIENT_ID = "62df1bd7a8b641d899cf46a72d9e8195"
 CLIENT_SECRET = "98254d2479944fed9ac4c4d2281e8de7"
 
-# === Step 1: Get Access Token ===
+# access token
 def get_token():
     auth_str = f"{CLIENT_ID}:{CLIENT_SECRET}"
     b64_auth = base64.b64encode(auth_str.encode()).decode()
@@ -24,7 +24,7 @@ def get_token():
     )
     return token_response.json().get("access_token")
 
-# === Step 2: Get Artist Data ===
+# srtists data
 def get_artist_data(artist_name, token):
     headers = {"Authorization": f"Bearer {token}"}
     params = {"q": artist_name, "type": "artist", "limit": 1}
@@ -38,7 +38,7 @@ def get_artist_data(artist_name, token):
             "popularity": artist['popularity']
         }
 
-# === Step 3: Define Artists ===
+# define artists
 artist_names = [
     "Dua Lipa", "J. Cole", "Lana Del Rey", "Stray Kids", "Gigi Perez",
     "Nate Smith", "Alice In Chains", "Tommy Richman", "PARTYNEXTDOOR",
@@ -46,7 +46,7 @@ artist_names = [
     "Creed", "JENNIE", "Dasha", "Lainey Wilson", "Journey", "Led Zeppelin"
 ]
 
-# === Step 4: Collect Artist Data ===
+#collect artist data
 token = get_token()
 artist_data = []
 for name in artist_names:
@@ -54,11 +54,11 @@ for name in artist_names:
     if result:
         artist_data.append(result)
 
-# === Step 5: Save to JSON ===
+#save to JSON
 with open("data.json", "w") as f:
     json.dump(artist_data, f, indent=4)
 
-# === Step 6: Save to SQLite ===
+#save to SQL
 conn = sqlite3.connect("SpotifyArtists.db")
 c = conn.cursor()
 
@@ -70,7 +70,7 @@ c.execute('''
         popularity INTEGER
     )
 ''')
-
+#table artist follower popularity
 for artist in artist_data:
     c.execute('''
         INSERT INTO SpotifyArtists (name, followers, popularity)
@@ -80,7 +80,7 @@ for artist in artist_data:
 conn.commit()
 conn.close()
 
-# === Step 7: Plot - Overrated vs Underrated Scatter ===
+#  Overrated vs Underrated Scatter 
 df = pd.DataFrame(artist_data)
 df['log_followers'] = np.log10(df['followers'])
 
