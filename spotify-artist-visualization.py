@@ -3,7 +3,6 @@ import requests
 import base64
 import json
 import sqlite3
-import pandas as pd
 import numpy as np
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
@@ -16,11 +15,10 @@ CLIENT_SECRET = "98254d2479944fed9ac4c4d2281e8de7"
 def get_token():
     auth_str = f"{CLIENT_ID}:{CLIENT_SECRET}"
     b64_auth = base64.b64encode(auth_str.encode()).decode()
-
     token_response = requests.post(
         "https://accounts.spotify.com/api/token",
         headers={"Authorization": f"Basic {b64_auth}"},
-        data={"grant_type": "client_credentials"}
+        data={"grant_type": "client 🙂credentials"}
     )
     return token_response.json().get("access_token")
 
@@ -61,7 +59,6 @@ with open("data.json", "w") as f:
 # === Step 6: Save to SQLite ===
 conn = sqlite3.connect("SpotifyArtists.db")
 c = conn.cursor()
-
 c.execute('''
     CREATE TABLE IF NOT EXISTS SpotifyArtists (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -70,43 +67,53 @@ c.execute('''
         popularity INTEGER
     )
 ''')
-
 for artist in artist_data:
     c.execute('''
         INSERT INTO SpotifyArtists (name, followers, popularity)
         VALUES (?, ?, ?)
     ''', (artist['name'], artist['followers'], artist['popularity']))
-
 conn.commit()
 conn.close()
 
 # === Step 7: Plot - Overrated vs Underrated Scatter ===
-df = pd.DataFrame(artist_data)
-df['log_followers'] = np.log10(df['followers'])
+# Prepare data without pandas
+log_followers = [np.log10(artist['followers']) for artist in artist_data]
+popularity = [artist['popularity'] for artist in artist_data]
+names = [artist['name'] for artist in artist_data]
 
 # Fit regression
-X = df[['log_followers']]
-y = df['popularity']
+X = np.array(log_followers).reshape(-1, 1)  # Reshape for sklearn
+y = np.array(popularity)
 reg = LinearRegression().fit(X, y)
-df['predicted'] = reg.predict(X)
-df['residual'] = df['popularity'] - df['predicted']
-df['performance'] = df['residual'].apply(lambda x: 'Overperforming' if x > 3 else ('Underperforming' if x < -3 else 'On-Trend'))
+predicted = reg.predict(X)
+residuals = y - predicted
+
+# Assign performance categories
+performance = []
+for res in residuals:
+    if res > 3:
+        performance.append('Overperforming')
+    elif res < -3:
+        performance.append('Underperforming')
+    else:
+        performance.append('On-Trend')
 
 # Plot
 plt.figure(figsize=(12, 8))
 sns.scatterplot(
-    data=df,
-    x='log_followers',
-    y='popularity',
-    hue='performance',
+    x=log_followers,
+    y=popularity,
+    hue=performance,
     palette={'Overperforming': 'green', 'Underperforming': 'red', 'On-Trend': 'gray'},
     s=100
 )
-sns.lineplot(x=df['log_followers'], y=df['predicted'], color='blue', label='Trendline')
+# Plot trendline
+sns.lineplot(x=log_followers, y=predicted, color='blue', label='Trendline')
 
-for _, row in df.iterrows():
-    if abs(row['residual']) > 4:
-        plt.text(row['log_followers'] + 0.01, row['popularity'] + 0.5, row['name'], fontsize=9)
+# Add labels for artists with large residuals
+for i, res in enumerate(residuals):
+    if abs(res) > 4:
+        plt.text(log_followers[i] + 0.01, popularity[i] + 0.5, names[i], fontsize=9)
 
 plt.title("Spotify Artists: Popularity vs. Followers (Log Scale)", fontsize=16)
 plt.xlabel("Log10(Followers)", fontsize=12)
