@@ -16,7 +16,7 @@ def run_all_visualizations():
     print("Calculating Concert Density & Creating Bar Chart...")
     calculate_concert_density.generate_concert_density_chart()
 
-    print("✅ All visualizations saved to the Visualizations/ folder.")
+    print("All visualizations saved to the Visualizations/ folder.")
 
 if __name__ == "__main__":
     run_all_visualizations()

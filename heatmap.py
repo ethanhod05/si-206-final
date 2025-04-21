@@ -15,7 +15,7 @@ def get_event_locations(artist_name, country_code="US", size=100):
 
     response = requests.get(url, params=params)
     if response.status_code != 200:
-        print(f"❌ Error fetching events for {artist_name}: {response.status_code}")
+        print(f"Error fetching events for {artist_name}: {response.status_code}")
         return []
 
     data = response.json()
@@ -56,6 +56,6 @@ def generate_heatmap():
         plt.tight_layout()
         plt.savefig("Visualizations/ticketmaster_event_heatmap.png", dpi=300)
         plt.close()
-        print("✅ Map saved as Visualizations/ticketmaster_event_heatmap.png")
+        print("Map saved as Visualizations/ticketmaster_event_heatmap.png")
     else:
         print("⚠️ No event locations found.")
