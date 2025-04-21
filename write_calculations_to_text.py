@@ -29,9 +29,9 @@ conn.close()
 
 # 3. Write results to a text file
 with open("results.txt", "w") as f:
-    f.write("🎵 Average Number of Upcoming Concerts by Popularity Level:\n")
+    f.write("Average Number of Upcoming Concerts by Popularity Level:\n")
     for level, avg in avg_concerts.items():
         f.write(f"{level}: {avg:.2f} concerts\n")
     
-    f.write("\n📊 Average Log10 Followers Across All Spotify Artists:\n")
+    f.write("\nAverage Log10 Followers Across All Spotify Artists:\n")
     f.write(f"{avg_log_followers:.2f}\n")
